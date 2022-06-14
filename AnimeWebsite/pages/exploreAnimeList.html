@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Infinitybox - Discover new mangas</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="scriptAnimeList.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </head>
+
+    <body onload="bodyReady('https://kitsu.io/api/edge/anime?page[limit]=18&page[offset]=')">
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container">
+                <span class="navbar-brand mb-0 h1"><a href = "/" style="text-decoration: none; color: white;">Infinitybox</a></span>
+                <button
+                    class="navbar-toggler"
+                    type = "button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navmenu" 
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>    
+                <div class="collapse navbar-collapse" id = "navmenu">
+                    <ul class = "navbar-nav ms-auto">
+                        <li class = "nav-item">
+                            <a href="/comics" class="nav-link">Comics</a>
+                        </li>
+                        <li class = "nav-item">
+                            <a href="/animes" class="nav-link">Animes</a>
+                        </li>
+                        <li class = "nav-item" id = "login">
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class = "container" style = "padding-top:20px; padding-bottom:20px;">
+            <h3 style = "text-align: center;padding-bottom: 10px;">Anime</h3>
+            <div class="btn-group" style="display: inline-block;">
+            <h5 style="display: inline-block;">Filter</h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16" style="display: inline-block;">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+            </div>
+            <button style="display: inline-block;" onclick="sortNew();" type="button" class="btn btn-light">
+                New
+            </button>
+            <div class="btn-group" style="display: inline-block;">
+                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Season
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" id = "winter" onclick="season('winter');" style="cursor: pointer;">Winter</a>
+                    <a class="dropdown-item" id = "spring" onclick="season('spring');" style="cursor: pointer;">Spring</a>
+                    <a class="dropdown-item" id = "summer" onclick="season('summer');" style="cursor: pointer;">Summer</a>
+                    <a class="dropdown-item" id = "fall" onclick="season('fall');" style="cursor: pointer;">Fall</a>
+                </div>
+            </div>
+            <button style="display: inline-block;" onclick="popularity();" type="button" class="btn btn-light">
+                    Popularity
+            </button>
+            <button style="display: inline-block;" onclick="ranking();" type="button" class="btn btn-light">
+                Rating
+            </button>
+            <div class="btn-group" style="display: inline-block;">
+                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Status
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" id = "current" onclick="status_('current');" style="cursor: pointer;">Ongoing</a>
+                    <a class="dropdown-item" id = "finished" onclick="status_('finished');" style="cursor: pointer;">Complete</a>
+                    <a class="dropdown-item" id = "upcoming" onclick="status_('upcoming');" style="cursor: pointer;">Upcoming</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row" id="anime_set">
+                
+            </div>
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLongTitle"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Synopsis</h6>
+                        <p id = "Synopsis"></p>
+                        <h6>Age Rating</h6>
+                        <p id = "ageRating"></p>
+                        <h6>Trailer</h6>
+                        <div id = "Trailer"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            
+            <nav aria-label="Page navigation" style="left: 42%; position:absolute;">
+                <ul class="pagination" id="navigation">
+                    <li class="page-item"><a class="page-link" onclick = "pageDown()" style="color: black; cursor: pointer;">Previous</a></li>
+                    <li class="page-item"><a class="page-link" onclick = "pageUp()" style="color: black;cursor: pointer;">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+        <section class="footer" style="padding-top: 20px;">
+            <div class="text-dark p-5" style="background-color: #f4f4f5;">
+                <h6>Contact Us</h6>
+                <p>email: sedorodion@hotmail.com</p>
+            </div>
+        </section>
+    </body>
+</html>
