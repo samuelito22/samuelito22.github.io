@@ -2,11 +2,8 @@
     --dark:#141212;
     --warning: #f6981e;
     --white: #fff;
-}
-
-.container{
-    width: 100%;
-    height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
 .containerImage{
