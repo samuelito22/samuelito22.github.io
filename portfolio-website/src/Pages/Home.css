@@ -1,0 +1,42 @@
+:root{
+    --dark:#141212;
+    --warning: #f6981e;
+    --white: #fff;
+}
+
+.container{
+    width: 100%;
+    height: 100vh;
+}
+
+.containerImage{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../pictures/Home/background.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.containerContent{
+    color: var(--white);
+    text-align: center;
+    padding-top: 15%;
+}
+
+.btn-warning{
+    background-color: var(--warning);
+    border: 2px solid transparent;
+    width: 50px;
+    font-weight: bold;
+    padding: 8px 22px;
+    border-radius: 30px;
+    transition: 0.4s;
+    margin: auto;
+}
+
+.btn-warning:hover{
+    background-color: transparent;
+    border: 2px solid var(--warning);
+    cursor: pointer;
+    transform: scale(1.05);
+}
