@@ -44,9 +44,30 @@
 
 .navItems li{
     display: inline-block;
-    padding: 0px 0px 0px 30px;
+    box-sizing: border-box;
+    border-bottom: 2px transparent var(--warning);
+    height: 130%;
 }
 
+.navItems li::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    transform: translate(0%,960%);
+    background: var(--warning);
+    transition: width .3s;
+}
+
+.navItems li:hover::after {
+    width: 100%;
+}
+
+
+
+li + li {
+    margin-left: 30px;
+}
 
 .navLinks{
     text-decoration: none;

@@ -1,0 +1,26 @@
+:root{
+    --dark:#141212;
+    --warning: #f6981e;
+    --white: #fff;
+}
+
+.Divider{
+    display: grid;
+    grid-template-columns: 65% 1fr;
+}
+
+.Divider img{
+    max-height: 500px;
+    position: relative;
+    top: 30px;
+    right: 100px;
+    border-radius: 10px;
+}
+
+.Container{
+    position: relative;
+    top: 15%;
+    text-align: center;
+    width: 200px;
+    height: auto;
+}
