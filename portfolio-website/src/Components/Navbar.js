@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Navbar.css'
 import {Link, useLocation} from "react-router-dom";
 import { FaBoxOpen } from 'react-icons/fa';
@@ -10,6 +10,10 @@ export default function Navbar() {
       }
 
     const [location, setLocation] = useState(usePathname);
+    useEffect(() => {
+        document.getElementById(location).style.borderBottom = "3px solid var(--warning)";
+      }, [location]);
+    
     const setBorder = (id) => {
         console.log(id)
         if(location!='/'){
@@ -19,10 +23,7 @@ export default function Navbar() {
             setLocation(id)
             document.getElementById(id).style.borderBottom = "3px solid var(--warning)";
         }
-    }
-
-    
-    
+    } 
 
   return (
     <nav className='navbar'>
