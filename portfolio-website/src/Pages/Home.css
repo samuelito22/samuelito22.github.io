@@ -2,13 +2,15 @@
     --dark:#141212;
     --warning: #f6981e;
     --white: #fff;
-    overflow: hidden;
-    position: relative;
 }
 
-.containerImage{
-    width: 100%;
+.container{
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.containerImage{
+    height: 100%;
     background-image: url('../pictures/Home/background.jpg');
     background-size: cover;
     background-position: center;

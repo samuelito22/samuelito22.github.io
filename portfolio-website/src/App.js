@@ -5,12 +5,12 @@ import Contact from './Pages/Contact';
 import Work from './Pages/Work';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from './Components/Navbar';
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar/> 
+    
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/About' element={<About />}/>

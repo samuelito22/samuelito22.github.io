@@ -1,0 +1,24 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.inputBox{
+    margin-bottom: 5px;
+    padding: 2%;
+    width: 80%;
+    border-radius: 15px;
+    border: 1px solid var(--dark);
+    color: var(--dark);
+}
+
+#messageBox{
+    height: 20%;
+    resize: none;
+}

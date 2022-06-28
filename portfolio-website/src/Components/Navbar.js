@@ -11,15 +11,17 @@ export default function Navbar() {
 
     const [location, setLocation] = useState(usePathname);
     useEffect(() => {
-        document.getElementById(location).style.borderBottom = "3px solid var(--warning)";
+        if(location !== '/'){
+            document.getElementById(location).style.borderBottom = "3px solid var(--warning)";
+        }
       }, [location]);
     
     const setBorder = (id) => {
         console.log(id)
-        if(location!='/'){
+        if(location!=='/'){
             document.getElementById(location).style.borderBottom = "3px transparent var(--warning)";
         }
-        if(id != '/'){
+        if(id !== '/'){
             setLocation(id)
             document.getElementById(id).style.borderBottom = "3px solid var(--warning)";
         }
