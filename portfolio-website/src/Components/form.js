@@ -22,7 +22,7 @@ export default function ContactUs(){
       <input className='inputBox' placeholder='Name...' type="text" name="name" />
       <input className='inputBox' placeholder='Email...' type="email" name="email" />
       <textarea className='inputBox' id="messageBox" placeholder='Message...' name="message" />
-      <input className='btn-warning-fillIn' style={{"color":"white", "marginTop":"3px", "border":"transparent"}} type="submit" value="Submit" />
+      <input className='btn-warning-fillIn' style={{"color":"white", "marginTop":"3px", "border":"transparent", "width":"80%"}} type="submit" value="Submit" />
     </form>
   );
 };
